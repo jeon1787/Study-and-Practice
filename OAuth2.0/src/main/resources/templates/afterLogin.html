@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sns 로그인 성공</title>
+  <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+  <h3>로그인 성공!</h3>
+  <script type="text/javascript">
+    var naver_id_login = new naver_id_login("9pmuWV3hdE23LuAsDCL6", "http://localhost:9080/OAuth2-study/callback");
+
+    // 접근 토큰 값 출력
+    alert(naver_id_login.oauthParams.access_token);
+
+    // 네이버 사용자 프로필 조회
+    naver_id_login.get_naver_userprofile("naverSignInCallback()");
+
+    // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+    function naverSignInCallback() {
+      alert(naver_id_login.getProfileData('email'));
+      alert(naver_id_login.getProfileData('nickname'));
+      alert(naver_id_login.getProfileData('age'));
+    }
+  </script>
+</body>
+</html>
